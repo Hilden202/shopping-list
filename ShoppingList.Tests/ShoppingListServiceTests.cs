@@ -38,10 +38,9 @@ public class ShoppingListServiceTests
         
         //Act
         var actual = service.GetAll();
-        var actualCount = actual.Count;
 
         //Assert
-        Assert.Equal(actualCount, actual.Count);
+        Assert.Equal(expected, actual.Count);
         
     }
 

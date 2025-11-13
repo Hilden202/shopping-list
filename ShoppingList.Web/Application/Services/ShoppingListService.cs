@@ -21,13 +21,13 @@ public class ShoppingListService : IShoppingListService
 
     public IReadOnlyList<ShoppingItem> GetAll()
     {
-        // TODO: Students - Return all items from the array (up to _nextIndex)
-        if (_nextIndex == 0)
-        {
-            return [];
-        }
+        var result = new List<ShoppingItem>();
         
-        return _items;   
+        for (int i = 0; i < _nextIndex; i++)
+        {
+            result.Add(_items[i]);
+        }
+        return result;
     }
 
     public ShoppingItem? GetById(string id)
@@ -38,6 +38,7 @@ public class ShoppingListService : IShoppingListService
 
     public ShoppingItem? Add(string name, int quantity, string? notes)
     {
+        // Expand array if full
         var item = new ShoppingItem
         {
             Name = name,
@@ -45,8 +46,8 @@ public class ShoppingListService : IShoppingListService
             Notes = notes,
         };
         
-        _items = new ShoppingItem[_nextIndex]  ; 
-        _nextIndex++;     
+        _items[_nextIndex] = item;
+        _nextIndex++;
         
     // Return the created item
     return item;
