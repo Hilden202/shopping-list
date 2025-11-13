@@ -8,6 +8,25 @@ namespace ShoppingList.Tests;
 
 public class ShoppingListServiceTests
 {
+    /// GetById() tests:
+    /// - GetById_WithInvalidId_ShouldReturnNull
+    /// - GetById_WithNullId_ShouldReturnNull
+    /// - GetById_WithEmptyId_ShouldReturnNull
+
+    [Fact]
+    public void GetById_WithValidId_ShouldReturnItem()
+    {
+        //Arrange
+        var service = new ShoppingListService();
+
+        ShoppingItem? expectedItem = service.Add("Bulle", 2, "Ett par bullar");
+        Assert.NotNull(expectedItem); // Ensure expectedItem is not null
+        //Act
+        ShoppingItem? actualItem = service.GetById(expectedItem!.Id);
+        //Assert
+        Assert.Equal(expectedItem, actualItem);
+    }
+
     /// - GetAll_ShouldNotReturnMoreThanActualItemCount
 
     [Fact]
@@ -44,7 +63,7 @@ public class ShoppingListServiceTests
 
 
     }
-    /// - Add_WhenArrayFull_ShouldExpandArray
+
     /// - Add_AfterArrayExpansion_ShouldContinueWorking
     /// - Add_ShouldSetIsPurchasedToFalse
 
@@ -134,7 +153,7 @@ public class ShoppingListServiceTests
 /// - Use descriptive test names: Method_Scenario_ExpectedBehavior
 ///
 /// What to Test:
-/// - Happy path scenarios (normal, expected usage)
+/// - Happy path scenarios (normal, expectedItem usage)
 /// - Input validation (null/empty IDs, invalid parameters)
 /// - Edge cases (empty array, array expansion, last item, etc.)
 /// - Array management (shifting after delete, compacting, reordering)
