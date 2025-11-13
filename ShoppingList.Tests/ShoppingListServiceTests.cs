@@ -44,7 +44,27 @@ public class ShoppingListServiceTests
 
 
     }
+    /// - Add_WhenArrayFull_ShouldExpandArray
+    /// - Add_AfterArrayExpansion_ShouldContinueWorking
+    /// - Add_ShouldSetIsPurchasedToFalse
 
+    [Fact]
+    public void Add_WhenArrayFull_ShouldExpandArray()
+    {
+        //Arrange
+        var service = new ShoppingListService();
+        //Fill the array with 10 items
+        for (int i = 0; i < 10; i++)
+        {
+            service.Add("Banan", 1, "En fin banan");
+        }
+        //Act
+        bool arrayIsFull = !service.GetAll().Any(item => item is null);
+
+        Assert.True(arrayIsFull);
+        service.Add("Banan", 1, "En fin banan"); // this is like an implicit assert that Add() does not throw an exception
+            
+    }   
     [Fact]
     public void AddWithValidInputShouldReturnItem()
     {
@@ -78,7 +98,7 @@ public class ShoppingListServiceTests
 
         //Assert
 
-        Assert.NotEqual(item1.Id, item2.Id);
+        Assert.NotEqual(item1!.Id, item2.Id);
     }
 
 
