@@ -40,7 +40,11 @@ public class ShoppingListService : IShoppingListService
 
     public ShoppingItem? Add(string name, int quantity, string? notes)
     {
-        // Expand array if full
+        // Expand array if _nextIndex points to the last element
+        if (_nextIndex == (_items.Length - 1))
+        {
+            Array.Resize<ShoppingItem>(ref _items, 2 * _items.Length);
+        }
         var item = new ShoppingItem
         {
             Name = name,
