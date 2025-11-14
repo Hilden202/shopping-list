@@ -30,7 +30,3 @@ jobs:
 
       #- name: Run Tests
         #run: dotnet test
-          echo "" >> $GITHUB_STEP_SUMMARY
-      
-          echo "## 🧮 Total Tests Across All Projects" >> $GITHUB_STEP_SUMMARY
-          echo "**$total_tests** tests executed 🎉🚀🔥" >> $GITHUB_STEP_SUMMARY
