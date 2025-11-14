@@ -11,9 +11,18 @@ on:
       [main]
  
 jobs:
-  echo_hej:
-      name: Echo Hej
+  build_and_test:
+      name: Bygg och testa
       runs-on: ubuntu-latest
       
       steps:
-            - run: echo "HEJ"
+        - name: Echo Hej
+        - run: echo "HEJ"
+
+        - name: Checkout code
+        - uses: actions/checkout@v5.0.0
+
+        - name: Build on a single os
+        - uses: actions/setup-dotnet@v5.0.0
+
+          
