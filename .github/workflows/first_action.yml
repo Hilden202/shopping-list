@@ -17,12 +17,12 @@ jobs:
       
       steps:
         - name: Echo Hej
-        - run: echo "HEJ"
+          run: echo "HEJ"
 
         - name: Checkout code
-        - uses: actions/checkout@v5.0.0
+          uses: actions/checkout@v5.0.0
 
         - name: Build on a single os
-        - uses: actions/setup-dotnet@v5.0.0
+          uses: actions/setup-dotnet@v5.0.0
 
           
