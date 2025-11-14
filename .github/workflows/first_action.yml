@@ -35,6 +35,25 @@ jobs:
         - name: Run tests
           run: dotnet test
 
+  build-debug-and-relase:
+
+    name: Build Debug and Release for Ubuntu and Windows
+
+    strategy:
+        matrix:
+          os: [ubuntu-latest, windows-latest]
+          build-configuration: [Debug, Release]
+
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+      - uses: actions/checkout@v5
+      - run: dotnet build --configuration ${{ matrix.build-configuration}}
+        
+      
+
+      
+
 
 
 
