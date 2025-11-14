@@ -20,7 +20,7 @@ jobs:
 
     steps:
       - name: Setup .NET
-        uses: action/setup-dotnet@v5.0.0
+        uses: action/setup-dotnet@v4
         with:
           dotnet-version: ${{ matrix.version }}
 
