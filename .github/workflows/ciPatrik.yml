@@ -1,0 +1,36 @@
+name: ciPatrik
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+
+jobs:
+# Todo Matrix här.. typ {{ Matrix }}
+  run_tests:
+  #för fler os
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        version: ['9.0.x', '8.0.x']
+        os: [ubuntu-latest, windows-latest]
+    #runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: action/checkout@v4
+        with:
+          dotnet-version: ${{ matrix.version }}
+          
+
+      - name: Build
+        run: dotnet build
+
+      - name: Run Tests
+        run: dotnet test
+          
+
+
+  
