@@ -19,6 +19,7 @@ jobs:
     #runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v4
       - name: Setup .NET
         uses: action/setup-dotnet@v4
         with:
@@ -29,7 +30,3 @@ jobs:
 
       - name: Run Tests
         run: dotnet test
-          
-
-
-  
