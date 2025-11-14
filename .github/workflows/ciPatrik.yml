@@ -29,13 +29,16 @@ jobs:
         run: dotnet build
 
       - name: Run Tests
-        run: |
-          if [ -z "${{ success() }}" ]; then
-            echo "Tests passed"
-          else
-            echo "Tests failed"
-            exit 1
-          fi
+        run: dotnet test
+      
+      - name: Tests passed
+        if: success()
+        run: echo "Tests passed ✔️"
+      
+      - name: Tests failed
+        if: failure()
+        run: echo "Tests failed ❌"
+
           
       #- name: Send to Discord
        # env:
