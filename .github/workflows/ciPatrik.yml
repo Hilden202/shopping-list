@@ -29,7 +29,13 @@ jobs:
         run: dotnet build
 
       - name: Run Tests
-        run: dotnet test
+        run: |
+          if dotnet test; then
+          echo "Tests passed"
+          else
+          echo "Tests failed"
+          exit 1
+          fi
           
       #- name: Send to Discord
        # env:
