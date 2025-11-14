@@ -39,7 +39,6 @@ jobs:
         if: failure()
         run: echo "Tests failed ❌"
 
-          
       #- name: Send to Discord
        # env:
         #  WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOKHILDEN }}
