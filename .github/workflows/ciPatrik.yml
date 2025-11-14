@@ -9,7 +9,6 @@ on:
   pull_request:
 
 jobs:
-# Todo Matrix här.. typ {{ Matrix }}
   run_tests:
   #för fler os
     runs-on: ${{ matrix.os }}
@@ -32,6 +31,16 @@ jobs:
       #- name: Run Tests
         #run: dotnet test
 
+      - name: Add Test Summary (Deluxe)
+        shell: bash
+        run: |
+          echo "## 🚀 Test Summary Deluxe Edition" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "<details><summary>📦 Expand per-project overview</summary>" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+      
+          total_tests=0
+          
       #- name: Send to Discord
        # env:
         #  WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOKHILDEN }}
