@@ -8,6 +8,11 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - run: echo ${{ github }}
-            - run: echo ${{ runner }}
+            - run: echo ${{ github.job }}
+            - run: echo ${{ github.actor }}
+            - run: echo ${{ github.event_name }}
+
+            - run: echo ${{ runner.os }}
+            - run: echo ${{ runner.arch }}
+            - run: echo ${{ runner.os }}
 
