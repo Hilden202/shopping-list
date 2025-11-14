@@ -33,7 +33,7 @@ jobs:
       
       - name: Tests passed
         if: success()
-        run: echo "Tests passed ✔️"
+        run: echo "Tests passed ✅"
       
       - name: Tests failed
         if: failure()
