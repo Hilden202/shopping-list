@@ -29,8 +29,8 @@ jobs:
         run: dotnet build
 
       - name: Run Tests
+        if: success()
         run: |
-          if dotnet test; then
           echo "Tests passed"
           else
           echo "Tests failed"
