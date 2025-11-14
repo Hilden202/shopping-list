@@ -34,6 +34,13 @@ public class ShoppingListService : IShoppingListService
 
     public ShoppingItem? GetById(string id)
     {
+        foreach (var item in _items)
+        {
+            if (item.Id == id)
+            {
+                return item;
+            }
+        }
         // TODO: Students - Find and return the item with the matching id
         return null;
     }
