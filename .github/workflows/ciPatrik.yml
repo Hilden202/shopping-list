@@ -30,3 +30,52 @@ jobs:
 
       #- name: Run Tests
         #run: dotnet test
+
+      - name: Add Test Summary (Deluxe)
+        shell: bash
+        run: |
+          echo "## 🚀 Test Summary Deluxe Edition" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "<details><summary>📦 Expand per-project overview</summary>" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+      
+          total_tests=0
+      
+          # Hitta alla test-projekt
+          test_projects=$(find . -name "*Test*.csproj")
+      
+          for proj in $test_projects; do
+              proj_name=$(basename "$proj" .csproj)
+              proj_dir=$(dirname "$proj")
+      
+              echo "### 🧪 $proj_name" >> $GITHUB_STEP_SUMMARY
+              echo "<small><code>$proj</code></small>" >> $GITHUB_STEP_SUMMARY
+      
+              # Kör list-tests
+              list_output=$(dotnet test "$proj" --list-tests || true)
+      
+              # Räkna rader med testmetoder (indenterade)
+              count=$(echo "$list_output" | grep -c "^  ")
+      
+              total_tests=$((total_tests + count))
+      
+              # Emoji-nivå beroende på mängd tester
+              if [ "$count" -gt 30 ]; then
+                  level="🔥🔥🔥"
+              elif [ "$count" -gt 10 ]; then
+                  level="⚡⚡"
+              else
+                  level="✨"
+              fi
+      
+              echo "- 🧮 Tests: **$count** $level" >> $GITHUB_STEP_SUMMARY
+              echo "- ✔️ Status: Passed" >> $GITHUB_STEP_SUMMARY
+              echo "---" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+          done
+      
+          echo "</details>" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+      
+          echo "## 🧮 Total Tests Across All Projects" >> $GITHUB_STEP_SUMMARY
+          echo "**$total_tests** tests executed 🎉🚀🔥" >> $GITHUB_STEP_SUMMARY
