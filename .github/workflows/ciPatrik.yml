@@ -29,12 +29,12 @@ jobs:
         run: dotnet build
 
       - name: Run Tests
-        if: success()
         run: |
-          echo "Tests passed"
+          if [ -z "${{ success() }}" ]; then
+            echo "Tests passed"
           else
-          echo "Tests failed"
-          exit 1
+            echo "Tests failed"
+            exit 1
           fi
           
       #- name: Send to Discord
