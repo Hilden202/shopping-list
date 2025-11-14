@@ -1,10 +1,10 @@
 name: ciPatrik
 
 on:
-  workflow_dispatch:
-  #push:
-    #branches:
-      #- main
+  #workflow_dispatch:
+  push:
+    branches:
+      - main
 
   pull_request:
 
@@ -32,15 +32,15 @@ jobs:
       #- name: Run Tests
         #run: dotnet test
 
-      - name: Send to Discord
-        env:
-          WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOKHILDEN }}
-          REPO: ${{ github.repository }}
-          BRANCH: ${{ github.head_ref || github.ref_name }}
-          ACTOR: ${{ github.actor }}
-        run: |
-          CONTENT="💁 Workflow kördes av ${ACTOR} i ${REPO} på branch ${BRANCH}"
-          PAYLOAD="{\"username\":\"GitHub Actions\",\"content\":\"${CONTENT}\"}"
-          curl -H "Content-Type: application/json" \
-               -d "$PAYLOAD" \
-               "$WEBHOOK_URL"
+      #- name: Send to Discord
+       # env:
+        #  WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOKHILDEN }}
+         # REPO: ${{ github.repository }}
+          #BRANCH: ${{ github.head_ref || github.ref_name }}
+          #ACTOR: ${{ github.actor }}
+        #run: |
+         # CONTENT="💁 Workflow kördes av ${ACTOR} i ${REPO} på branch ${BRANCH}"
+          #PAYLOAD="{\"username\":\"GitHub Actions\",\"content\":\"${CONTENT}\"}"
+          #curl -H "Content-Type: application/json" \
+           #    -d "$PAYLOAD" \
+            #   "$WEBHOOK_URL"
